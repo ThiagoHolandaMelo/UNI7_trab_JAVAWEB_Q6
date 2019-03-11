@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title><h:outputText value="Jogo da Velha" /></title>
+</h:head>
+
+<h:body>
+	<h:form id="jogoDaVelhaForm">
+		<h:outputLabel value="Nome dos jogadores:" /><br />
+		
+		<h:outputLabel for="nomeJogadorUm" value="0    " />
+		<h:inputText id="nomeJogadorUm" value="#{jogoDaVelhaBean.nmJogadorUm}"
+			valueChangeListener="#{jogoDaVelhaBean.onChangeNmJogadorUm}">
+        	<f:ajax event="keyup"
+        		execute="@this" 
+        		render="@this jogadorDaVezField" />
+        </h:inputText><br />
+		
+		<br />
+		
+		<h:outputLabel for="nomeJogadorDois" value="X    " />
+		<h:inputText id="nomeJogadorDois" value="#{jogoDaVelhaBean.nmJogadorDois}" valueChangeListener="#{jogoDaVelhaBean.onChangeNmJogadorDois}">
+        	<f:ajax event="keyup"
+        		execute="@this" 
+        		render="@this jogadorDaVezField" />
+        </h:inputText><br />
+		
+		<h:commandButton action="#{jogoDaVelhaBean.novoJogo}" value="Novo jogo">
+	        <f:ajax execute="@form" render="nomeJogadorUm nomeJogadorDois jogoFinalizado p11 p12 p13 p21 p22 p23 p31 p32 p33"
+	           onevent="concluidoJogoReiniciado" onerror="erro" />
+	    </h:commandButton>
+	    
+	    <br />
+	    <br />
+	    <br />
+	    <br />
+	    <br />
+	    
+	    <h:outputLabel id="jogadorDaVezField" value="É a vez de #{jogoDaVelhaBean.nmJogadorAtual} jogar" /><br />
+	    <h:outputLabel id="jogoFinalizado" value="Jogo finalizado: #{jogoDaVelhaBean.fimDoJogo} "  /><br /><br />
+	    
+	    <h:commandButton id="p11" value="#{jogoDaVelhaBean.p11}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP11}" render="p11 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{ jogoDaVelhaBean.p11 eq '0' or jogoDaVelhaBean.p11 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <h:commandButton id="p12" value="#{jogoDaVelhaBean.p12}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP12}" render="p12 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{jogoDaVelhaBean.p12 eq '0' or jogoDaVelhaBean.p12 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <h:commandButton id="p13" value="#{jogoDaVelhaBean.p13}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP13}" render="p13 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{jogoDaVelhaBean.p13 eq '0' or jogoDaVelhaBean.p13 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <br /><br />
+	    
+	    <h:commandButton id="p21" value="#{jogoDaVelhaBean.p21}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP21}" render="p21 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{ jogoDaVelhaBean.p21 eq '0' or jogoDaVelhaBean.p21 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <h:commandButton id="p22" value="#{jogoDaVelhaBean.p22}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP22}" render="p22 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{jogoDaVelhaBean.p22 eq '0' or jogoDaVelhaBean.p22 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <h:commandButton id="p23" value="#{jogoDaVelhaBean.p23}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP23}" render="p23 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{jogoDaVelhaBean.p23 eq '0' or jogoDaVelhaBean.p23 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <br /><br />
+	    
+	    <h:commandButton id="p31" value="#{jogoDaVelhaBean.p31}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP31}" render="p31 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{jogoDaVelhaBean.p31 eq '0' or jogoDaVelhaBean.p31 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <h:commandButton id="p32" value="#{jogoDaVelhaBean.p32}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP32}" render="p32 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{jogoDaVelhaBean.p32 eq '0' or jogoDaVelhaBean.p32 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <h:commandButton id="p33" value="#{jogoDaVelhaBean.p33}">	        
+	        <f:ajax listener="#{jogoDaVelhaBean.onChangeItemTabuleiroP33}" render="p33 jogoFinalizado jogadorDaVezField"
+	        		disabled="#{jogoDaVelhaBean.p33 eq '0' or jogoDaVelhaBean.p33 eq 'X'}"
+	        />
+	    </h:commandButton>
+	    
+	    <br /><br />
+	    
+	</h:form>	 
+	    
+   <script type="text/javascript">
+       function concluidoJogoReiniciado(data) { 
+    	   if( data.status == 'success' ){
+    		   alert("Jogo reiniciado");   
+    	   }
+    	    
+       }
+       function erro(data) { alert("Erro: " + data); }
+   </script>
+	
+</h:body>
+</html>
+
+		
